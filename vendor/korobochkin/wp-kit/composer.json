@@ -1,0 +1,33 @@
+{
+    "name": "korobochkin/wp-kit",
+    "description": "Classes and interfaces for WordPress APIs",
+    "type": "library",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Kolya Korobochkin",
+            "email": "korobochkin@users.noreply.github.com",
+            "homepage": "https://github.com/korobochkin"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "symfony/validator": "^4.4|^5.0",
+        "symfony/form": "^4.4|^5.0",
+        "symfony/http-foundation": "^4.4|^5.0",
+        "symfony/twig-bridge": "^4.4|^5.0",
+        "symfony/dependency-injection": "^4.4|^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Korobochkin\\WPKit\\": "source/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Korobochkin\\WPKit\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+    }
+}

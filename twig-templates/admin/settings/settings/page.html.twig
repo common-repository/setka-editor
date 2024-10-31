@@ -1,0 +1,136 @@
+<div class="wrap">
+
+    {% use 'admin/settings/common/wordpress-settings-parts.html.twig' %}
+
+    {% form_theme form 'admin/settings/common/checkboxes-in-fieldset.html.twig' %}
+
+    {{ block('wordpress_page_title') }}
+
+    {{ block('wordpress_page_tabs') }}
+
+    {{ form_start(form) }}
+        {{ form_errors(form) }}
+
+        {{ block('wordpress_form_table_start') }}
+            {{ block('wordpress_form_table_tr_start') }}
+
+                {{ block('wordpress_form_table_th_start') }}
+                    {{ form_label(form.post_types) }}
+                {{ block('wordpress_form_table_th_end') }}
+
+                {{ block('wordpress_form_table_td_start') }}
+                    <p>{{ translations.post_types_description }}</p>
+                    <hr>
+                    <fieldset>
+                        {%- for choice in form.post_types -%}
+                            {{ form_widget(choice) }}<label for="{{ choice.vars.id }}">{{ choice.vars.label }} <code>{{ choice.vars.value }}</code></label><br>
+                        {%- endfor -%}
+                    </fieldset>
+                {{ block('wordpress_form_table_td_end') }}
+
+            {{ block('wordpress_form_table_tr_end') }}
+
+            {{ block('wordpress_form_table_tr_start') }}
+
+                {{ block('wordpress_form_table_th_start') }}
+                    {{ form_label(form.roles) }}
+                {{ block('wordpress_form_table_th_end') }}
+
+                {{ block('wordpress_form_table_td_start') }}
+                    <p>{{ translations.roles_description|striptags('<code>, <a>')|format('<code>'~translations.roles_capability~'</code>')|raw }}</p>
+                    <hr>
+                    {{ form_widget(form.roles) }}
+                {{ block('wordpress_form_table_td_end') }}
+
+            {{ block('wordpress_form_table_tr_end') }}
+
+            {% if page.isVip == false %}
+                {{ block('wordpress_form_table_tr_start') }}
+
+                    {{ block('wordpress_form_table_th_start') }}
+                        {{ form_label(form.srcset_sizes) }}
+                    {{ block('wordpress_form_table_th_end') }}
+
+                    {{ block('wordpress_form_table_td_start') }}
+                        <p>{{ translations.srcset_sizes_description|striptags('<code>')|raw }}</p>
+                        <p>{{ translations.srcset_sizes_description_2 }}</p>
+                        <hr>
+                        <fieldset>
+                            {%- for choice in form.srcset_sizes -%}
+                                {{ form_widget(choice) }}<label for="{{ choice.vars.id }}">{{ choice.vars.label }}
+                                    {% for attribute in ['width', 'height'] %}
+                                        {% if choice.vars.attr['data-' ~ attribute] == 0 %}
+                                            {% set value = translations.sizes.units_unlimited %}
+                                        {% else %}
+                                            {% set value = translations.sizes.units_px|format(choice.vars.attr['data-' ~ attribute]) %}
+                                        {% endif %}
+                                        <code>{{ translations.sizes[attribute]|format(value) }}</code>
+                                    {% endfor %}</label><br>
+                            {%- endfor -%}
+                        </fieldset>
+                    {{ block('wordpress_form_table_td_end') }}
+
+                {{ block('wordpress_form_table_tr_end') }}
+            {% endif %}
+
+            {{ block('wordpress_form_table_tr_start') }}
+
+                {{ block('wordpress_form_table_th_start') }}
+                    {{ form_label(form.endpoint) }}
+                {{ block('wordpress_form_table_th_end') }}
+
+                {{ block('wordpress_form_table_td_start') }}
+                    <label>{{ form_widget(form.endpoint) }}</label>
+                    <p>{{ translations.endpoint_description }}</p>
+                {{ block('wordpress_form_table_td_end') }}
+
+            {{ block('wordpress_form_table_tr_end') }}
+
+            {{ block('wordpress_form_table_tr_start') }}
+
+                {{ block('wordpress_form_table_th_start') }}
+                    {{ form_label(form.styles_mode) }}
+                {{ block('wordpress_form_table_th_end') }}
+
+                {{ block('wordpress_form_table_td_start') }}
+                    {%- for choice in form.styles_mode -%}
+                        <div class="setka-editor-form-radio-button-choice">
+                            <p><label for="{{ choice.vars.id }}">{{ form_widget(choice) }}<b>{{ choice.vars.label }}</b></label>
+                                <span class="setka-editor-form-radio-button-choice-caption">{{ translations.styles_mode[choice.vars.value][1]|striptags('<a>')|raw }}</span></p>
+                        </div>
+                    {%- endfor -%}
+                {{ block('wordpress_form_table_td_end') }}
+
+            {{ block('wordpress_form_table_tr_end') }}
+
+            {{ block('wordpress_form_table_tr_start') }}
+
+                {{ block('wordpress_form_table_th_start') }}
+                    {{ form_label(form.force_use_setka_cdn) }}
+                {{ block('wordpress_form_table_th_end') }}
+
+                {{ block('wordpress_form_table_td_start') }}
+                    <label>{{ form_widget(form.force_use_setka_cdn) }}{{ translations.force_use_setka_cdn }}</label>
+                {{ block('wordpress_form_table_td_end') }}
+
+            {{ block('wordpress_form_table_tr_end') }}
+
+            {{ block('wordpress_form_table_tr_start') }}
+
+                {{ block('wordpress_form_table_th_start') }}
+                    {{ form_label(form.white_label) }}
+                {{ block('wordpress_form_table_th_end') }}
+
+                {{ block('wordpress_form_table_td_start') }}
+                    <label>{{ form_widget(form.white_label) }}{{ translations.white_label }}</label>
+                {{ block('wordpress_form_table_td_end') }}
+
+            {{ block('wordpress_form_table_tr_end') }}
+
+
+        {{ block('wordpress_form_table_end')  }}
+
+        <p class="submit">{{ form_widget(form.submit) }}</p>
+
+    {{ form_end(form) }}
+</div>

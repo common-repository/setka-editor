@@ -1,0 +1,48 @@
+{
+    "name": "setka/setka-editor",
+    "description": "Setka Editor. Create beautiful posts with WordPress.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Setka Team",
+            "email": "hello@setka.io"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.3",
+        "ext-json": "*",
+        "composer/installers": "^1.9",
+        "monolog/monolog": "^1.25",
+        "korobochkin/wp-kit": "^1.0"
+    },
+    "autoload": {
+        "files": [
+            "source/libraries/polyfill-mbstring/bootstrap.php"
+        ],
+        "psr-4": {
+            "Setka\\Editor\\": "source/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Setka\\Editor\\Tests\\": "tests/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.5",
+        "symfony/finder": "^4.4",
+        "hanneskod/classtools": "^1.2",
+        "squizlabs/php_codesniffer": "^3.5",
+        "freemius/wordpress-sdk": "^2.4",
+        "automattic/vipwpcs": "^2.0",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2"
+    },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    }
+}

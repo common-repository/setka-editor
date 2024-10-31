@@ -1,0 +1,77 @@
+<div class="wrap">
+    {% include 'admin/settings/common/page-title.html.twig' %}
+
+    <table class="form-table setka-editor-form-table">
+        <tbody>
+            {% for option_name, option_value in options %}
+                <tr>
+                    <th scope="row" style="padding: 10px !important; border: 1px solid #ddd;">
+                        <small><code>{{ option_name }}</code></small>
+                    </th>
+                    <td style="padding: 10px !important; border: 1px solid #ddd;">
+                        <code>{{ option_value }}</code>
+                    </td>
+                    <td style="padding: 10px !important; border: 1px solid #ddd;">
+                        {% if option_name == 'FilesOption' %}
+                            <p>List of files option</p>
+                        {% endif %}
+                        {% if option_name == 'FileSyncFailureOption' %}
+                            <p><code style="background: rgba(202, 76, 37, 0.77);">true</code> = Error during sync. Sync will start after files list update.</p>
+                            <p><code style="background: rgba(146, 202, 125, 0.77);">false</code> = No errors during sync.</p>
+                        {% endif %}
+                        {% if option_name == 'ServiceSwitchOption' %}
+                            <p><code style="background: rgba(146, 202, 125, 0.77);">true</code> = Sync enabled.</p>
+                            <p><code style="background: rgba(202, 76, 37, 0.77);">false</code> = Sync disabled by user in site settings.</p>
+                        {% endif %}
+                        {% if option_name == 'FileSyncStageOption' %}
+                            <p><code>download_files_list</code> = WP downloading list of files.
+                                <br>
+                                <code>create_entries</code> = WP creating file entries in DB.
+                                <br>
+                                <code>download_files</code> = WP downloading files marked as drafts.
+                                <br>
+                                <code>generate_editor_config</code> = WP generating JSON config for Editor.
+                                <br>
+                                <code>ok</code> = sync completed and local files must be used (see the next option to check it).</p>
+                        {% endif %}
+                        {% if option_name == 'UseLocalFilesOption' %}
+                            <p>If previous option value is <code>ok</code> then this value should be <code>true</code>.</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <table class="form-table setka-editor-form-table">
+        <tbody>
+            <tr>
+                {% for post_status, post_counter in posts %}
+                    <th style="vertical-align: bottom;">{{ post_status }}</th>
+                {% endfor %}
+            </tr>
+            <tr>
+                {% for post_status, post_counter in posts %}
+                    <td style="vertical-align: top; padding-left: 0 !important;">
+                        <code style="font-size: 40px;">{{ post_counter }}</code>
+                        {% if post_status == 'all' %}
+                            <p>Total amount of files in DB (all companies and statuses).</p>
+                        {% endif %}
+                        {% if post_status == 'archive' %}
+                            <p>Archived files (all companies).</p>
+                        {% endif %}
+                        {% if post_status == 'publish' %}
+                            <p>Successfully synced files.</p>
+                        {% endif %}
+                        {% if post_status == 'draft' %}
+                            <p>This files in queue to downloading.</p>
+                        {% endif %}
+                        {% if post_status == 'pending' %}
+                            <p>Files which have errors while downloading (will tried again at the next time).</p>
+                        {% endif %}
+                    </td>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+</div>

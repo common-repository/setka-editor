@@ -1,0 +1,53 @@
+<div class="wrap">
+
+    {% use 'admin/settings/common/wordpress-settings-parts.html.twig' %}
+
+    {{ block('wordpress_page_title') }}
+
+    {{ block('wordpress_page_tabs') }}
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_errors(form) }}
+
+        {{ block('wordpress_form_table_start') }}
+            {{ block('wordpress_form_table_tr_start') }}
+            {{ block('wordpress_form_table_td_start') }}
+
+                <p>{{ translations.amp_css_description }}</p>
+                <br>
+                <div style="max-width: 100%;">
+                {{ form_widget(form.amp_css) }}
+                <script>
+                    if('function' === typeof wp.codeEditor.initialize) {
+                        wp.codeEditor.initialize('amp_amp_css');
+                    }
+                </script>
+                </div>
+
+            {{ block('wordpress_form_table_td_end') }}
+            {{ block('wordpress_form_table_tr_end') }}
+
+            {{ block('wordpress_form_table_tr_start') }}
+            {{ block('wordpress_form_table_td_start') }}
+
+            <p>{{ translations.amp_fonts_description }}</p>
+            <br>
+            <div style="max-width: 100%;">
+                {{ form_widget(form.amp_fonts) }}
+                <script>
+                    if('function' === typeof wp.codeEditor.initialize) {
+                        wp.codeEditor.initialize('amp_amp_fonts');
+                    }
+                </script>
+            </div>
+
+            {{ block('wordpress_form_table_td_end') }}
+            {{ block('wordpress_form_table_tr_end') }}
+
+        {{ block('wordpress_form_table_end')  }}
+
+    <p class="submit">{{ form_widget(form.submit) }}</p>
+
+    {{ form_end(form) }}
+
+</div>

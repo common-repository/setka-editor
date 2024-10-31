@@ -1,0 +1,49 @@
+#poststuff {
+
+  @media only screen and (min-width:851px) and (max-width: 1360px) {
+    &.@{plugin-prefix}-poststuff-container-1-collapsed {
+      min-width: 1018px;
+      position: relative;
+      margin-right: -20px;
+      overflow-x: hidden;
+
+      #post-body {
+        &.columns-2 {
+          margin-right: 120px;
+        }
+      }
+
+      #postbox-container-1 {
+        position: relative;
+        z-index: 1;
+
+        body.stk-preview-enabled & {
+          z-index: 10;
+        }
+
+        margin-right: -370px !important;
+        margin-top: -5px;
+        padding: 5px 20px 0;
+
+        background: fadeout(@wp-background, 100%);
+        transition: transform .2s .4s, z-index 0s .6s, background 0s .6s;
+      }
+
+      #postbox-container-1:hover {
+        z-index: 110;
+        background: @wp-background;
+        transition: transform .2s .4s, z-index 0s .4s, background 0s .4s;
+        transform: translateX(-250px);
+      }
+    }
+  }
+
+  @media only screen and (min-width: 1361px) {
+    #post-body-content {
+      /* For compatibility with Meta Box plugin and z-index:0 on div.postarea.
+         https://metabox.io/support/topic/bug-color-picker-field-is-showed-below-the-title-field/ */
+      position: relative;
+      z-index: 100;
+    }
+  }
+}

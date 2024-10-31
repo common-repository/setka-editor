@@ -1,0 +1,13 @@
+<div class="wrap">
+    {% use 'admin/settings/common/wordpress-settings-parts.html.twig' %}
+
+    {{ block('wordpress_page_title') }}
+
+    {{ block('wordpress_page_tabs') }}
+
+    <p>{{ translations.description|striptags('<a>')|raw }}</p>
+
+    {{ form_start(form) }}
+    {{ form_errors(form) }}
+    {{ form_end(form) }}
+</div>

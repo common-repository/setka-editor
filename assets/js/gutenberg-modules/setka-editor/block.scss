@@ -1,0 +1,37 @@
+html.setka-editor-selected {
+  div.components-popover.editor-block-settings-menu__popover {
+    div.components-dropdown-menu__menu {
+      div.components-menu-group {
+        div {
+          button:nth-child(5) {
+            // Hide "Add to Reusable Blocks" menu item
+            display: none;
+          }
+        }
+      }
+    }
+  }
+
+  .editor-block-toolbar {
+    pointer-events: none !important;
+  }
+  .editor-block-toolbar > * {
+    pointer-events: all !important;
+  }
+}
+
+@media (min-width: 600px) {
+  .editor-block-list__layout {
+    .editor-block-list__block[data-align="full"][data-type="setka-editor/setka-editor"] {
+      & > .editor-block-list__block-edit {
+        margin-left: -25px;
+        margin-right: -25px;
+
+        &:before {
+          left: -14px;
+          right: -14px;
+        }
+      }
+    }
+  }
+}

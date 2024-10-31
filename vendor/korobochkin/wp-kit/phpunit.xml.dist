@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<phpunit
+	bootstrap="tests/bootstrap.php"
+	backupGlobals="false"
+	colors="true"
+	convertErrorsToExceptions="true"
+	convertNoticesToExceptions="true"
+	convertWarningsToExceptions="true"
+	>
+	<testsuites>
+		<testsuite name="all">
+			<directory suffix="Test.php">./tests/</directory>
+		</testsuite>
+	</testsuites>
+	<filter>
+		<whitelist addUncoveredFilesFromWhitelist="true">
+			<!-- this is the path of the files included in your clover report -->
+			<directory suffix=".php">./source</directory>
+		</whitelist>
+	</filter>
+	<logging>
+		<log type="coverage-clover" target="clover.xml"/>
+		<log type="coverage-html" target="dist/coverage/"/>
+		<log type="coverage-text" target="php://stdout" showUncoveredFiles="false" showOnlySummary="true"/>
+	</logging>
+</phpunit>

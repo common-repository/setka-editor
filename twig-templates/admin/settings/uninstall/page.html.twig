@@ -1,0 +1,27 @@
+<div class="wrap">
+
+    {% use 'admin/settings/common/wordpress-settings-parts.html.twig' %}
+
+    {{ block('wordpress_page_title') }}
+
+    {{ block('wordpress_page_tabs') }}
+
+    {{ block('wordpress_form_table_start') }}
+        {{ block('wordpress_form_table_tr_start') }}
+            {{ block('wordpress_form_table_td_start') }}
+            <p>{{ translations.keep_styles_text|striptags('<code>')|raw }}</p>
+            <br>
+            <div style="max-width: 100%;">
+                <textarea id="setka-editor-uninstall-code" class="large-text code" rows="5" style="white-space: nowrap; overflow-x: scroll; resize: none;">{{ code }}</textarea>
+                <p class="description">{{ translations.keep_styles_caption }}</p>
+                <script>
+                    if('function' === typeof wp.codeEditor.initialize) {
+                        wp.codeEditor.initialize('setka-editor-uninstall-code');
+                    }
+                </script>
+            </div>
+            {{ block('wordpress_form_table_td_end') }}
+        {{ block('wordpress_form_table_tr_end') }}
+    {{ block('wordpress_form_table_end')  }}
+
+</div>
